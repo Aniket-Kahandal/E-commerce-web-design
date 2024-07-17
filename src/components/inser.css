@@ -1,0 +1,21 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.regular{
+  margin-top: 100px;
+  padding: 50px;
+}
+.low-opacity {
+  margin-top: 100px;
+  padding: 50px;
+
+    opacity: 0.5;
+    position:fixed;
+  }
+  
+  
+  
+ 
+  

@@ -1,0 +1,106 @@
+{
+  "Users": [
+    {
+      "id": "user1",
+      "username": "aniket",
+      "password": "aniket@123",
+      "mobile":"9623576236"
+    },
+    {
+      "id": "user2",
+      "username": "rushi",
+      "password": "rushi@123",
+      "mobile":"9623576237"
+
+    },
+    {
+      "id": "user3",
+      "username": "shubham",
+      "password": "shubham@123",
+      "mobile":"9623576238"
+
+    },
+    {
+      "id": "user4",
+      "username": "ganesh",
+      "password": "ganesh@123",
+      "mobile":"9623576239"
+
+    }
+  ],
+  "Admin": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "admin@123"
+    }
+  ],
+  "Mobiles": [
+    {
+      "id": "m1",
+      "name": "Samsung",
+      "image": "https://www.91-img.com/gallery_images_uploads/b/d/bd16559e0a47ec10ec40e166eecb071b2c2616c1.jpg?tr=h-271,c-at_max,q-80",
+      "model": "S21",
+      "color": "red",
+      "price": "45622"
+    },
+    {
+      "id": "m3",
+      "name": "vivo",
+      "image": "https://asia-exstatic-vivofs.vivo.com/PSee2l50xoirPK7y/1543223037468/c95e4f6534f1e9bbad59761284ab059b.png",
+      "color": "black",
+      "model": "v11",
+      "price": "22000"
+    },
+    {
+      "id": "m4",
+      "name": "Asus",
+      "image": "https://rukminim2.flixcart.com/image/850/1000/xif0q/mobile-skin/r/z/n/red-cf-skin-or-vinyl-warp-for-asus-rog-phone-6-pro-5g-yes-skinex-original-imagp6hrthprrzbc.jpeg?q=90&crop=false",
+      "color": "red",
+      "model": "FFF22",
+      "price": "14000"
+    },
+    {
+      "id": "m5",
+      "name": "Redmi",
+      "image": "https://rukminim2.flixcart.com/image/850/1000/xif0q/mobile/f/6/y/note-13-5g-2312draabi-redmi-original-imahyzyfhkfrnukq.jpeg?q=90&crop=false",
+      "color": "silver",
+      "model": "Note 12 pro",
+      "price": "8000"
+    },
+    {
+      "id": "m6",
+      "name": "Apple",
+      "image": "https://rukminim2.flixcart.com/image/850/1000/ktketu80/mobile/8/z/w/iphone-13-mlph3hn-a-apple-original-imag6vzzhrxgazsg.jpeg?q=90&crop=false",
+      "color": "red",
+      "model": "Iphone 13",
+      "price": "44998"
+    }
+  ],
+  "Laptops": [
+    {
+      "id": "L1",
+      "name": "HP",
+      "image": "https://images-cdn.ubuy.co.in/64ccb2559d908f42222b598a-hp-pavilion-13-3-fhd-intel-core-i3.jpg",
+      "color": "Grey",
+      "Ram": "8GB",
+      "price": "45000"
+    },
+    {
+      "id": "L2",
+      "name": "HP",
+      "image": "https://images-cdn.ubuy.co.in/64ccb2559d908f42222b598a-hp-pavilion-13-3-fhd-intel-core-i3.jpg",
+      "color": "black",
+      "Ram": "12GB",
+      "price": "85000"
+    },
+    {
+      "id": "L3",
+      "name": "HP",
+      "image": "https://images-cdn.ubuy.co.in/64ccb2559d908f42222b598a-hp-pavilion-13-3-fhd-intel-core-i3.jpg",
+      "color": "silver",
+      "Ram": "6GB",
+      "price": "25000"
+    }
+  ]
+}
