@@ -17,6 +17,7 @@ import BuyItem from './components/BuyItem';
 import AddToCart from './components/AddToCart';
 import {Usercontext} from './Context/Context';
 import OrderHistory from './components/OrderHistory';
+import RecentaView from './components/RecentaView';
 function App() {
   const[status,setStatus]=useState("logout");
   const [user,setUser]=useState("ABC");
@@ -31,6 +32,7 @@ function App() {
           <Route path='/Electronics' element={<Electronics />}></Route>
           <Route path='/insert' element={<InsertItem />}></Route>
           <Route path='/buy' element={<BuyItem />}></Route>
+          <Route path='/recent' element={<RecentaView />}></Route>
           <Route path='/cart' element={<AddToCart />}></Route>
           <Route path='/orderhistory' element={<OrderHistory />}></Route>
           <Route path='/edit' element={<Edit />}></Route>

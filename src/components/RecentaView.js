@@ -1,35 +1,81 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import './Electronics.css';
+import "./Electronics.css";
 export default function RecentaView(props) {
-  const [recent, setRecent] = useState([]);
+  const [fav, setFav] = useState([]);
+  const [cartList, setCartList] = useState([]);
   console.log("MobileList", props.list);
   useEffect(() => {
-    getRecentView();
+    // getRecentView();
+    getFav();
   }, []);
-  const getRecentView = () => {
-    fetch("http://localhost:8083/recent_View")
+  // const getRecentView = () => {
+  //   fetch("http://localhost:8083/recent_View")
+  //     .then((response) => response.json())
+  //     .then((result) => setRecent(result));
+  // };
+  const getFav = () => {
+    fetch("http://localhost:8082/item")
       .then((response) => response.json())
-      .then((result) => setRecent(result));
+      .then((result) => setFav(result));
   };
- console.log("Recentally viewed Data",recent)
+  useEffect(() => {
+    fetch("http://localhost:8081/CartItems")
+      .then((response) => response.json())
+      .then((Result) => setCartList(Result));
+  }, []);
+
   return (
     <>
-      <div>
-       {recent.map((item)=>{
-          return(
-            <div className="all-content">
-             <div className="collection">
-                <img src={item.image} width={50} height={50}></img>
-                <label><strong>{item.name}</strong></label>
-                <label>{item.model}</label>
-                <label>{item.color}</label>
-
+      <div className="container">
+        {fav.map((item) => {
+          return (
+            <>
+              <div className="d-flex justify-content-center">
+                <div
+                  className="text-center shadow p-3 mb-5 bg-white rounded"
+                  style={{ width: "30%", margin: "30px" }}
+                >
+                  <img src={item.image} width={160} height={200}></img>
+                  <br></br>
+                  {cartList
+                    .filter((e) => e.product_id === item.pId)
+                    .map((item) => {
+                      return (
+                        <>
+                          <button className="btn btn">-</button>
+                          <label>{item.quantity}</label>
+                          <button className="btn btn">+</button>
+                        </>
+                      );
+                    })}
                 </div>
-
-             </div>
-          )
-       })}
+                <div
+                  className="text-center shadow p-3 mb-5 bg-white rounded "
+                  style={{ width: "40%" }}
+                >
+                  <h4>
+                    <strong>
+                      {item.Name}[{item.model}, {item.color}]
+                    </strong>
+                  </h4>
+                  <li>
+                    {" "}
+                    <strong>RAM: </strong>8GB{" "}
+                  </li>
+                  <li>
+                    {" "}
+                    <strong>Battery: </strong>5000 MHZ{" "}
+                  </li>
+                  <li>
+                    {" "}
+                    <strong>OS: </strong>Android 14
+                  </li>
+                </div>
+              </div>
+            </>
+          );
+        })}
       </div>
     </>
   );

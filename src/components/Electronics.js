@@ -16,7 +16,7 @@ export default function Electronics() {
   const [laptopList, setLaptopList] = useState([]);
   const [favItem, setFavItem] = useState([]);
   const [recent, setRecent] = useState([]);
-  const { status, setStatus,userId, username } = useContext(Usercontext);
+  const { status, setStatus, userId, username } = useContext(Usercontext);
   const { addItemToCart, removeItemFromCart } = useContext(Usercontext);
   const [quantity, setQuantity] = useState();
   const [fav, setFav] = useState(false);
@@ -29,7 +29,7 @@ export default function Electronics() {
   let [color, setColor] = useState("");
   let [price, setPrice] = useState("");
   //#endregion
-  console.log("Login status", status ,"userId",userId ,"username",username);
+  console.log("Login status", status, "userId", userId, "username", username);
   const navigate = useNavigate();
   useEffect(() => {
     getMobile();
@@ -120,6 +120,7 @@ export default function Electronics() {
 
   //-----Copy product details into Cart json--------------
   const copyProduct = (item) => {
+    debugger;
     //#region
     // debugger
     // const isItemAvailable=cart.filter(element=>element.product_id === item.id );
@@ -290,33 +291,29 @@ export default function Electronics() {
     }
   };
   const updateRecent = (item) => {
-
-    const isValid=recent.some((element)=>element.pId==item.id);
-    console.log('Isvalid',isValid)
-    if(! isValid)
-    {
-    fetch("http://localhost:8083/recent_View", {
-      method: "POST",
-      body: JSON.stringify({
-        id: "" + (recent.length + 1),
-        pId: "" + item.id,
-        Name: item.name,
-        model: item.model,
-        color: item.color,
-        price: item.price,
-        image: item.image,
-      }),
-      headers: { "content-type": "application/json" },
-    })
-      .then((response) => response.json())
-      .then((result) => {
-        alert("Item added to recent");
-        getRecentView();
-      });
-    }
-    else
-    {
-      return ;
+    const isValid = recent.some((element) => element.pId == item.id);
+    console.log("Isvalid", isValid);
+    if (!isValid) {
+      fetch("http://localhost:8083/recent_View", {
+        method: "POST",
+        body: JSON.stringify({
+          id: "" + (recent.length + 1),
+          pId: "" + item.id,
+          Name: item.name,
+          model: item.model,
+          color: item.color,
+          price: item.price,
+          image: item.image,
+        }),
+        headers: { "content-type": "application/json" },
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          alert("Item added to recent");
+          getRecentView();
+        });
+    } else {
+      return;
     }
   };
   const Show = (item) => {
@@ -331,14 +328,11 @@ export default function Electronics() {
     updateRecent(item);
   };
 
-  const arr={array:[1,2,3,4]}
-  arr.array.reverse();
-  console.log("Array",arr);
   return (
     <>
       {view && (
         <div
-          className="modal fade show"
+          className="modal"
           id="staticBackdrop1"
           data-bs-backdrop="static"
           data-bs-keyboard="false"
@@ -365,33 +359,86 @@ export default function Electronics() {
               </div>
               <div className="modal-body">
                 <div className="modal-main">
-                  <div className="picdiv text-center shadow p-3 mb-5 bg-white rounded" >
-                    <img src={img} width={200} height={200}></img>
-                    </div>
-                   
-                    
-                    
-                  <div className="infodiv   shadow p-3 mb-5 mt-2 bg-white rounded">
-                     <p className="text-center" style={{fontSize:"25px", fontWeight:"bolder"}}>{brand} {model}({color})</p>
-                     <ul>
-                       <li>
-                          Ram : 8GB
-                       </li>
-                       <li>
-                          Storage : 128GB
-                       </li>
-                       <li>
-                          Battery capacity : 5000 GHZ
-                       </li>
-                       <li>
-                          price: {price}
-                       </li>
-                     </ul>
-                     <button className="btn btn-primary mx-2" onClick={()=>copyProduct()}>BUY NOW</button>
-                    <button className="btn btn-success">Add to Cart </button>
-                    </div>
+                  {mobileList
+                    .filter((e) => e.id === id)
+                    .map((item) => {
+                      return (
+                        <>
+                          <div className="picdiv text-center shadow p-3 mb-5 bg-white rounded">
+                            <img
+                              className="img-fluid"
+                              src={img}
+                              width={200}
+                              height={200}
+                            ></img>
+                          </div>
+                          <div className="infodiv   shadow p-3 mb-5 mt-2 bg-white rounded">
+                            <p
+                              className="text-center"
+                              style={{ fontSize: "25px", fontWeight: "bolder" }}
+                            >
+                              {brand} {model}({color})
+                            </p>
+                            <ul>
+                              <li>Ram : 8GB</li>
+                              <li>Storage : 128GB</li>
+                              <li>Battery capacity : 5000 GHZ</li>
+                              <li>price: {price}</li>
+                            </ul>
+                            <button className="btn btn-primary mx-2">
+                              BUY NOW
+                            </button>
+                            {cart.some(
+                              (element) =>
+                                element.product_id === item.id &&
+                                element.quantity >= 1
+                            ) ? (
+                              <>
+                                {cart
+                                  .filter((e) => e.product_id === item.id)
+                                  .map((element) => {
+                                    return (
+                                      <>
+                                        <div className="quantbtn">
+                                          <button
+                                            className="btn "
+                                            onClick={() => decrease(element)}
+                                          >
+                                            -
+                                          </button>
+
+                                          <input
+                                            type="text"
+                                            className="input w-25"
+                                            style={{ width: "25%" }}
+                                            value={element.quantity}
+                                            readOnly
+                                          ></input>
+
+                                          <button
+                                            className="btn "
+                                            onClick={() => increase(element)}
+                                          >
+                                            +
+                                          </button>
+                                        </div>
+                                      </>
+                                    );
+                                  })}
+                              </>
+                            ) : (
+                              <button
+                                className="btn btn-success mx-3"
+                                onClick={() => copyProduct(item)}
+                              >
+                                Add to Cart
+                              </button>
+                            )}
+                          </div>
+                        </>
+                      );
+                    })}
                 </div>
-                
               </div>
               <div className="modal-footer">
                 <button
@@ -419,7 +466,7 @@ export default function Electronics() {
           {mobileList.map((item) => {
             return (
               <>
-                <div className="collection">
+                <div className="border border-black rounded-2 w-100 p-2 m-2  text-center">
                   <img
                     className="btn"
                     src={item.image}
@@ -434,7 +481,12 @@ export default function Electronics() {
                     <tr>Color: {item.color}</tr>
                     <tr>Price: {item.price}</tr>
                     <hr></hr>
-                    <button type="button" class="btn btn-primary" onClick={()=>AddItem()}>
+
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      onClick={() => AddItem()}
+                    >
                       Buy
                     </button>
 
@@ -456,6 +508,7 @@ export default function Electronics() {
                                 </button>
 
                                 <input
+                                className="quantity-input"  
                                   value={element.quantity}
                                   readOnly
                                 ></input>
@@ -479,7 +532,7 @@ export default function Electronics() {
                     )}
                     {favItem.some((e) => e.pId === item.id) ? (
                       <img
-                        className="btn"
+                        className="btn btn-success"
                         onClick={() => AddFav(item)}
                         src="https://static.thenounproject.com/png/1485114-200.png"
                         width={50}
@@ -506,21 +559,34 @@ export default function Electronics() {
           {laptopList.map((item) => {
             return (
               <>
-                <div className="collection ">
-                  <img src={item.image} width={"200px"} height={"200px"}></img>
+                <div className="border border-black rounded-2 w-100 p-2 m-2  text-center">
+                  <img
+                    className="btn"
+                    src={item.image}
+                    width={"200px"}
+                    height={"200px"}
+                    onClick={() => Show(item)}
+                  ></img>
+
                   <table>
-                    <tr>{item.brand}</tr>
-                    <tr>Ram: {item.Ram}</tr>
+                    <tr>{item.name}</tr>
+                    <tr>Model: {Math.random()}</tr>
                     <tr>Color: {item.color}</tr>
                     <tr>Price: {item.price}</tr>
                     <hr></hr>
-                    <button type="button" class="btn btn-primary" onClick={()=>AddItem()}>
+
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      onClick={() => AddItem()}
+                    >
                       Buy
                     </button>
 
                     {cart.some(
                       (element) =>
-                        element.product_id === item.id && element.quantity >= 1
+                        element.product_id === item.id &&
+                       element.quantity >= 1
                     ) ? (
                       <>
                         {cart
@@ -536,6 +602,7 @@ export default function Electronics() {
                                 </button>
 
                                 <input
+                                className="quantity-input"  
                                   value={element.quantity}
                                   readOnly
                                 ></input>
@@ -551,7 +618,7 @@ export default function Electronics() {
                       </>
                     ) : (
                       <button
-                        className="btn btn-primary mx-3"
+                        className="btn btn-success mx-3"
                         onClick={() => copyProduct(item)}
                       >
                         Add to Cart
@@ -559,7 +626,7 @@ export default function Electronics() {
                     )}
                     {favItem.some((e) => e.pId === item.id) ? (
                       <img
-                        className="btn"
+                        className="btn btn-success"
                         onClick={() => AddFav(item)}
                         src="https://static.thenounproject.com/png/1485114-200.png"
                         width={50}
@@ -583,23 +650,34 @@ export default function Electronics() {
 
         <h3>Recentally Viewed</h3>
         <div className="all-content">
-          {recent.map((item) => {
-            console.log("reverse",item  )
-            return (
-              <>
-                <div className="shadow p-3 m-5 mt-2 bg-white rounded ">
-                  <img src={item.image} width={"200px"} height={"200px"}></img>
-                  <table className="mt-5">
-                    <tr>{item.brand}</tr>
-                    <tr><strong>Name:</strong> {item.model}</tr>
-                    <tr><strong>Color:</strong> {item.color}</tr>
-                    <tr><strong>Price:</strong> {item.price}</tr>
-                    
-                  </table>
-                </div>
-              </>
-            );
-          }).reverse()}
+          {recent
+            .map((item) => {
+              console.log("reverse", item);
+              return (
+                <>
+                  <div className="shadow p-3 m-5 mt-2 bg-white rounded ">
+                    <img
+                      src={item.image}
+                      width={"200px"}
+                      height={"200px"}
+                    ></img>
+                    <table className="mt-5">
+                      <tr>{item.brand}</tr>
+                      <tr>
+                        <strong>Name:</strong> {item.model}
+                      </tr>
+                      <tr>
+                        <strong>Color:</strong> {item.color}
+                      </tr>
+                      <tr>
+                        <strong>Price:</strong> {item.price}
+                      </tr>
+                    </table>
+                  </div>
+                </>
+              );
+            })
+            .reverse()}
         </div>
       </div>
     </>

@@ -1,12 +1,3 @@
 {
-  "CartItems": [
-    {
-      "id": "1",
-      "product_id": "m4",
-      "name": "Asus",
-      "color": "red",
-      "quantity": 2,
-      "price": "14000"
-    }
-  ]
+  "CartItems": []
 }

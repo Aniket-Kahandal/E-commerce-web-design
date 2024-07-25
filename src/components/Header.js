@@ -44,34 +44,47 @@ export default function Header() {
       <>
       {/* Here i pass states as well as functions globally */}
         <Usercontext.Provider value={{ status, setStatus, count, setCount, addItemToCart,removeItemFromCart, userId,setUserId, username,setUsername }}>
-          <nav className="navbar bg-primary fixed-top" data-bs-theme="dark">
-            <div className="container-fluid">
-              <img src='https://png.pngtree.com/png-vector/20221228/ourmid/pngtree-online-shopping-logo-desing-png-image_6540923.png' width={70} height={50} alt="Logo" />
-              <Link to={'/Home'} className='btn'>Home</Link>
-              <Link to={'/Electronics'} className='btn'>Electronics</Link>
-              <Link to={'/Electronics'} className='btn'>Books</Link>
-              <Link to={'/Electronics'} className='btn'>Jewelleries</Link>
-
-              <form className="d-flex">
+          {/* <p>userID:{userId}</p> */}
+        
+<nav class="navbar navbar-dark bg-dark " >
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      
+    </button>
+    <div className="d-flex">
                 {status === "logout" && (
-                  <Link to='/Login' className='btn btn-primary'>Log in</Link>
+                  <Link to='/Login' className='btn btn-primary mx-5'>Log in</Link>
                 )}
                 {status === "login" || status === "Admin" && (
-                  <Link to='/Login' className='btn btn-primary'>{status}</Link>
+                  <Link to='/Login' className='btn btn-primary mx-5'>{status}</Link>
                 )}
-              </form>
-              <button className="btn btn-success" onClick={()=>handlOrders()}>
-                 
+                {status==="login" && (
+                  <button className="btn btn-success" onClick={()=>handlOrders()}>
                  Order History
                </button>
-              <Link to='/Cart' className='btn btn-primary'><img
+                )}
+
+                 <img className='btn btn' src='https://w7.pngwing.com/pngs/942/419/png-transparent-bookmark-favorite-love-save-like-essential-icon-thumbnail.png' width={50} height={50} onClick={()=>navigate('/recent')}></img>
+              <Link to='/Cart' className='btn btn-primary mx-2'><img
                       src="https://cdn-icons-png.flaticon.com/512/34/34568.png"
                       width={30}
                       height={30}
                        alt="My CART"
                     />{count}</Link>
-            </div>
-          </nav>
+              </div>
+              
+  </div>
+</nav>
+<div class="collapse  " id="navbarToggleExternalContent" data-bs-theme="dark" style={{textAlignLast:"center"}}>
+  <div class="bg-dark p-4">
+  <Link to={'/Home'} className='btn'>Home</Link>
+              <Link to={'/Electronics'} className='btn'>Electronics</Link>
+              <Link to={'/Electronics'} className='btn'>Books</Link>
+              <Link to={'/Electronics'} className='btn'>Jewelleries</Link>
+
+  </div>
+</div>
           <Outlet />
         </Usercontext.Provider>
       </>

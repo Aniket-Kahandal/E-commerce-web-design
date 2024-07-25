@@ -108,35 +108,21 @@ const Loginpg = () => {
   return (
     <>
    
-      <form className="form">
+      <form className="form container text-center">
         <h3>Log in </h3>
-        <div className="mb-3">
-          <label for="exampleInputEmail1" className="form-label">
-            Enter User Name
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            id="exampleInputEmail1"
-            aria-describedby="emailHelp"
-            value={username1}
-            onChange={(e) => setUsername1(e.target.value)}
-          />
-          <span style={{ color: "red" }}>{usernameError}</span>
-        </div>
-        <div className="mb-3">
-          <label for="exampleInputPassword1" className="form-label">
-            Password
-          </label>
-          <input
-            type="password"
-            className="form-control"
-            id="exampleInputPassword1"
-            value={pass}
-            onChange={(e) => setPass(e.target.value)}
-          />
-          <span style={{ color: "red" }}>{passError}</span>
-        </div>
+        
+        <div class="form-floating mb-3">
+  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" value={username1} onChange={(e)=>setUsername1(e.target.value)}/>
+  <label for="floatingInput">Email address</label>
+  <span style={{color:"red"}}>{usernameError}</span>
+</div>
+
+<div class="form-floating mb-3">
+  <input type="email" class="form-control " id="floatingInput" placeholder="name@example.com" value={pass} onChange={(e)=>setPass(e.target.value)}/>
+  <label for="floatingInput">Enter valid password</label>
+  <span style={{color:"red"}}>{passError}</span>
+
+</div>
         <div className="mb-3">
           <input
             type="radio"
@@ -144,6 +130,7 @@ const Loginpg = () => {
             name="fav_language"
             value="Admin"
             onChange={(e) => setCategory(e.target.value)}
+            
           />
           <label for="admin">Admin</label>
           <input

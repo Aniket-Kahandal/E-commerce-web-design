@@ -7,9 +7,22 @@
 .wrapper{
     margin:100px;
     border: 2px dotted black;
-    width: 80%;
+    width: 90%;
     display:flex;
+    justify-content: center;
 }
 .save{
     margin: 20px;
+}
+
+@media (max-width:600px) {
+    .wrapper {
+        margin:100px 50px 50px 20px;
+    justify-content: center;
+        font-size:small;
+        width: 90%;
+
+    }
+   
+
 }

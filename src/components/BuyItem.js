@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import "./BuyItem.css";
 import { Usercontext } from "../Context/Context";
+import { fireEvent } from "@testing-library/react";
 
 export default function BuyItem() {
   const location = useLocation();
@@ -135,11 +136,13 @@ export default function BuyItem() {
   };
 
   const handleAddressSubmit = (item) => {
-    item.preventDefault();
+    // item.preventDefault();
     // {console.log("State selected",state)}
     let isValid = ValidateAddress();
     console.log("Validation msg", isValid);
-    // setModal(false);
+    if (!isValid) {
+      alert("Address saved");
+    }
   };
   const ValidateAddress = () => {
     console.log("state", state);
@@ -171,42 +174,63 @@ export default function BuyItem() {
   {
     console.log("add Error", addressError);
   }
+  const date = new Date(Date.now());
+  let formattedDate =
+    "" +
+    ("date", `${date.getDate()}- ${date.getMonth()}-${date.getFullYear()}`);
   const handleOrder = () => {
-    cart.map((item) => {
-      fetch("http://localhost:8084/orders", {
-        method: "POST",
-        body: JSON.stringify({
-          id: "" + (orderList.length + 1),
-          pId: item.product_id,
-          UserId: "" + userId,
-          Product_Name: item.name,
-          price: item.price,
-          quantity: item.quantity,
+    handleAddressSubmit();
+    const newOrder = {
+      id: ""+(orderList.length + 1),
+      UserId: userId,
 
-          PaymentMode: payMode,
-        }),
-        headers: { "content-type": "application/json" },
-      })
-        .then((Response) => Response.json())
-        .then((result) => {
-          getOrderList();
-          alert("Item addded to Success History");
-        });
-    });
-
-    fetch("http://localhost:8081/CartItems", {
-      method: "DELETE",
+      TotalAmount: bill + 20,
+      OrderDate: formattedDate,
+      CartItems: cart.map((item) => ({
+        
+        pId: item.product_id,
+        Product_Name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+        Date: formattedDate,
+        PaymentMode: payMode,
+      })),
+    };
+    fetch("http://localhost:8084/orders", {
+      method: "POST",
+      body: JSON.stringify(newOrder),
+      headers: { "Content-type": "application/json" },
     })
       .then((response) => response.json())
-      .then((Result) => setCartList(Result));
-
-    navigate("/orderhistory", { state: { address, bill } });
-    console.log("Address in Buy ", address);
+      .then((result) => {
+        getOrderList();
+        alert("Order placed successfully");
+       
+        navigate("/orderhistory", { state: { address, bill: bill + 20 } });
+        
+        clear();
+      });
+      {cart.map((item)=>{
+        Delete(item)
+      })}
+  };
+  const Delete = (item) => {
+    // debugger
+    fetch("http://localhost:8081/CartItems/" + item.id, {
+      method: "DELETE",
+    })
+      .then((Response) => Response.json())
+      .then((result) => {
+        getList();
+        // addItemToCart(result);
+        removeItemFromCart(item.id);
+        // alert("item deleted");
+      });
   };
   return (
     <>
-      <div className="wrapper">
-        <div className="card w-75 mb-3  ">
+      <div className="wrapper container">
+        <div className="card card-responsive w-75 mb-3  ">
           <div className="shadow p-3 m-5 mt-2 bg-white rounded ">
             <div className="text-center ">
               <div>
@@ -283,7 +307,7 @@ export default function BuyItem() {
                 </form>
               </div>
 
-              <div class="save">
+              {/* <div class="save">
                 <button
                   type="submit"
                   class="btn btn-primary"
@@ -291,12 +315,11 @@ export default function BuyItem() {
                 >
                   save
                 </button>
-              </div>
-
+              </div> */}
             </div>
-           
           </div>
-          <div className="shadow p-3 m-5 mt-2 bg-white rounded text-center ">
+
+          {/* <div className="shadow p-3 m-5 mt-2 bg-white rounded text-center ">
               <h3 className="text-center">Payment Detail</h3>
               <input
                 class="form-check-input save"
@@ -327,7 +350,7 @@ export default function BuyItem() {
                    <p><strong>Scan above code for </strong></p>
                 </>
               )}
-            </div>
+            </div> */}
         </div>
 
         <div className="card w-50 ">
@@ -374,8 +397,6 @@ export default function BuyItem() {
             {/* })} */}
           </div>
         </div>
-        {/* <p>Login Status :{status}</p>
-        <p>Login Id :{userId}</p> */}
       </div>
     </>
   );

@@ -88,16 +88,16 @@
     },
     {
       "id": "L2",
-      "name": "HP",
-      "image": "https://images-cdn.ubuy.co.in/64ccb2559d908f42222b598a-hp-pavilion-13-3-fhd-intel-core-i3.jpg",
+      "name": "Lenovo",
+      "image": "https://5.imimg.com/data5/YX/UD/MY-12958801/lenovo-laptop-500x500-500x500.png",
       "color": "black",
       "Ram": "12GB",
       "price": "85000"
     },
     {
       "id": "L3",
-      "name": "HP",
-      "image": "https://images-cdn.ubuy.co.in/64ccb2559d908f42222b598a-hp-pavilion-13-3-fhd-intel-core-i3.jpg",
+      "name": "Asus",
+      "image": "https://5.imimg.com/data5/SELLER/Default/2023/4/303871397/QG/SX/TN/156505975/asus-laptop.PNG",
       "color": "silver",
       "Ram": "6GB",
       "price": "25000"

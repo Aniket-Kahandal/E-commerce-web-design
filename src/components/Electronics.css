@@ -15,17 +15,11 @@
     display: none;
     
 }
-.collection{
-    border: 2px solid black;
-    box-shadow:5px 10px 10px black ;
-    border-radius: 20%;
-    padding: 25px;
-    margin: 30px;
-    width: 50%;
-
+.quantity-input{
+    width: 20%;
 }
 .page-wrapper{
-    margin:70px 30px;
+    margin:20;
     padding: 35px;
 }
 .low-opacity{
@@ -50,3 +44,10 @@
     
     /* border: 1px dotted black; */
 }
+@media (max-width:400px) 
+{
+   .all-content{
+    display:block;
+   }
+}
+

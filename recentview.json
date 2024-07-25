@@ -3,6 +3,7 @@
     {
       "id": "2",
       "pId": "1",
+      "userId": "user1",
       "Name": "Samsung",
       "model": "S21",
       "color": "red",
@@ -20,12 +21,46 @@
     },
     {
       "id": "3",
+      "pId": "m5",
+      "Name": "Redmi",
+      "model": "Note 12 pro",
+      "color": "silver",
+      "price": "8000",
+      "image": "https://rukminim2.flixcart.com/image/850/1000/xif0q/mobile/f/6/y/note-13-5g-2312draabi-redmi-original-imahyzyfhkfrnukq.jpeg?q=90&crop=false"
+    },
+    {
+      "id": "4",
+      "pId": "m1",
+      "Name": "Samsung",
+      "model": "S21",
+      "color": "red",
+      "price": "45622",
+      "image": "https://www.91-img.com/gallery_images_uploads/b/d/bd16559e0a47ec10ec40e166eecb071b2c2616c1.jpg?tr=h-271,c-at_max,q-80"
+    },
+    {
+      "id": "5",
       "pId": "m4",
       "Name": "Asus",
       "model": "FFF22",
       "color": "red",
       "price": "14000",
       "image": "https://rukminim2.flixcart.com/image/850/1000/xif0q/mobile-skin/r/z/n/red-cf-skin-or-vinyl-warp-for-asus-rog-phone-6-pro-5g-yes-skinex-original-imagp6hrthprrzbc.jpeg?q=90&crop=false"
+    },
+    {
+      "id": "6",
+      "pId": "L1",
+      "Name": "HP",
+      "color": "Grey",
+      "price": "45000",
+      "image": "https://images-cdn.ubuy.co.in/64ccb2559d908f42222b598a-hp-pavilion-13-3-fhd-intel-core-i3.jpg"
+    },
+    {
+      "id": "7",
+      "pId": "L2",
+      "Name": "Lenovo",
+      "color": "black",
+      "price": "85000",
+      "image": "https://5.imimg.com/data5/YX/UD/MY-12958801/lenovo-laptop-500x500-500x500.png"
     }
   ]
 }

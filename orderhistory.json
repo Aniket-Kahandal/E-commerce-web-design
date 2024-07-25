@@ -1,50 +1,126 @@
 {
   "orders": [
     {
-      "id": "1",
-      "pId": "m3",
-      "UserId": "0.7672899179606012",
-      "Product_Name": "vivo",
-      "price": "22000",
-      "quantity": 1,
-      "Total_Bill": "",
-      "PaymentMode": "UPI"
+      "id": 1,
+      "UserId": "user1",
+      "TotalAmount": 50000,
+      "OrderDate": "11/11/1111",
+      "CartItems": [
+        {
+          "pId": "m3",
+          "Product_Name": "vivo",
+          "price": "22000",
+          "quantity": 1,
+          "Date": "2024-07-23",
+          "PaymentMode": "UPI"
+        },
+        {
+          "pId": "m4",
+          "UserId": "user2",
+          "Product_Name": "Asus",
+          "price": "14000",
+          "Date": "2024-07-23",
+          "quantity": 2,
+          "PaymentMode": "UPI"
+        }
+      ]
     },
     {
       "id": "2",
-      "pId": "m4",
-      "UserId": "user2",
-      "Product_Name": "Asus",
-      "price": "14000",
-      "quantity": 2,
-      "PaymentMode": "UPI"
+      "UserId": "user1",
+      "TotalAmount": 22000,
+      "OrderDate": "11/11/1111",
+      "CartItems": [
+        {
+          "pId": "m3",
+          "Product_Name": "vivo",
+          "UserId": "user1",
+          "price": "22000",
+          "quantity": 1,
+          "Date": "2024-07-23",
+          "PaymentMode": "UPI"
+        }
+      ]
     },
     {
       "id": "3",
-      "pId": "m4",
       "UserId": "user1",
-      "Product_Name": "Asus",
-      "price": "14000",
-      "quantity": 2,
-      "PaymentMode": ""
+      "TotalAmount": 110020,
+      "OrderDate": "25- 6-2024",
+      "CartItems": [
+        {
+          "pId": "m3",
+          "Product_Name": "vivo",
+          "price": "22000",
+          "quantity": 5,
+          "Date": "25- 6-2024",
+          "PaymentMode": ""
+        }
+      ]
     },
     {
       "id": "4",
-      "pId": "m4",
       "UserId": "user1",
-      "Product_Name": "Asus",
-      "price": "14000",
-      "quantity": 2,
-      "PaymentMode": ""
+      "TotalAmount": 81642,
+      "OrderDate": "25- 6-2024",
+      "CartItems": [
+        {
+          "pId": "m3",
+          "Product_Name": "vivo",
+          "price": "22000",
+          "quantity": 1,
+          "Date": "25- 6-2024",
+          "PaymentMode": ""
+        },
+        {
+          "pId": "m1",
+          "Product_Name": "Samsung",
+          "price": "45622",
+          "quantity": 1,
+          "Date": "25- 6-2024",
+          "PaymentMode": ""
+        },
+        {
+          "pId": "m4",
+          "Product_Name": "Asus",
+          "price": "14000",
+          "quantity": 1,
+          "Date": "25- 6-2024",
+          "PaymentMode": ""
+        }
+      ]
     },
     {
       "id": "5",
-      "pId": "m4",
-      "UserId": "user2",
-      "Product_Name": "Asus",
-      "price": "14000",
-      "quantity": 2,
-      "PaymentMode": ""
+      "UserId": "user1",
+      "TotalAmount": 8020,
+      "OrderDate": "25- 6-2024",
+      "CartItems": [
+        {
+          "pId": "m5",
+          "Product_Name": "Redmi",
+          "price": "8000",
+          "quantity": 1,
+          "Date": "25- 6-2024",
+          "PaymentMode": ""
+        }
+      ]
+    },
+    {
+      "id": "6",
+      "UserId": "user1",
+      "TotalAmount": 22020,
+      "OrderDate": "25- 6-2024",
+      "CartItems": [
+        {
+          "pId": "m3",
+          "Product_Name": "vivo",
+          "price": "22000",
+          "quantity": 1,
+          "Date": "25- 6-2024",
+          "PaymentMode": ""
+        }
+      ]
     }
   ]
 }
